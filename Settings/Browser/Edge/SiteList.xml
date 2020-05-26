@@ -1,0 +1,23 @@
+<site-list version="2">
+  <created-by>
+    <tool>EMIESiteListManager</tool>
+    <version>10.0.14357.1004</version>
+    <date-created>02/06/2020 21:43:03</date-created>
+  </created-by>
+  <site url="http://website/1/thing.aspx">
+    <compat-mode>Default</compat-mode>
+    <open-in>IE11</open-in>
+  </site>
+  <site url="http://website/2/thing">
+    <compat-mode>Default</compat-mode>
+    <open-in>IE11</open-in>
+  </site>
+  <site url="https://website/3/thing/showHome.do">
+    <compat-mode>Default</compat-mode>
+    <open-in>IE11</open-in>
+  </site>
+  <site url="https://website/4/thing/cuadmin/home.do">
+    <compat-mode>Default</compat-mode>
+    <open-in>IE11</open-in>
+  </site>
+</site-list>

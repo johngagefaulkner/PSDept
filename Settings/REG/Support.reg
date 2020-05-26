@@ -1,0 +1,9 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation]
+"Manufacturer"="Business"
+"SupportHours"="24/7/365"
+"Supportphone"="1-800-655-1956"
+"SupportProvider"="Business Help Desk"
+"SupportURL"="https://www.Business.net/SitePages/Home.aspx"
+"logo"="C:\\Windows\\OEM\\BusinessLogo.bmp"

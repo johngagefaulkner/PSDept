@@ -1,0 +1,326 @@
+{
+    "Program": {
+        "7-Zip": {
+            "name": "7-Zip",
+            "version": "19.00",
+            "Source": "\\Server\\Path\\Here\\7-Zip",
+            "filename": "Install-7Zip.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "/lv $LogPath\\Install-7-Zip.log"
+            ]
+        },
+        "Adobe Acrobat Reader DC": {
+            "name": "Adobe Acrobat Reader DC",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\AdobeAcrobatReaders",
+            "filename": "Install-AdobeReader.ps1",
+            "filepath": "$filePath",
+            "argumentlist": [
+                "/sPB",
+                "/rs",
+                "/l",
+                "/msi EULA_ACCEPT=YES /L*v $LogPath\\Install-AdobeDC.log"
+            ]
+        },
+        "Adobe Flash Player": {
+            "name": "Adobe Flash Player",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\AdobeFlashPlayer",
+            "filename": "Install-AdobeFlash.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "/lv $LogPath\\Install-AdobeFlashPlayer.log"
+            ]
+        },
+        "Capture Client": {
+            "name": "Capture Client",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\SonicWall",
+            "filename": "Install-SonicWall.bat",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "/lv $LogPath\\Install-SonicWall.log"
+            ]
+        },
+        "Cisco AnyConnect": {
+            "name": "Cisco AnyConnect",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\CiscoAnyConnect",
+            "filename": "Install-CiscoAnyConnect.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "/lv $LogPath\\Install-CiscoAnyConnect.log"
+            ]
+        },
+        "Cisco IP Communicator": {
+            "name": "Cisco IP Communicator",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\CiscoIPCommunicator",
+            "filename": "Install-CiscoIPCommunicator.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "DEVICENAME=$networkAdapter",
+                "/norestart",
+                "/lv $LogPath\\Install-CiscoIPCommunicator.log"
+            ]
+        },
+        "Cisco Jabber": {
+            "name": "Cisco Jabber",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\CiscoJabber",
+            "filename": "Install-CiscoJabber.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "/lv $LogPath\\Install-CiscoJabber.log"
+            ]
+        },
+        "Microsoft Dynamics 365": {
+            "name": "Microsoft Dynamics 365",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\CRMOutlookAdd-in",
+            "filename": "Install-CRM.bat",
+            "filepath": "",
+            "argumentlist": [
+                ""
+            ]
+        },
+        "Dell Command | Update": {
+            "name": "Dell Command | Update",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\SystemUpdater",
+            "filename": "Install-SystemUpdater.ps1",
+            "filepath": "$filePath",
+            "argumentlist": [
+                "/s"
+            ]
+        },
+        "Fiddler": {
+            "name": "Fiddler",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\Fiddler",
+            "filename": "Install-Fiddler.ps1",
+            "filepath": "$filePath",
+            "argumentlist": [
+                "/S"
+            ]
+        },
+        "Firefox": {
+            "name": "Mozilla Firefox",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\FireFox",
+            "filename": "Install-FireFox.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "/lv $LogPath\\Install-FireFox.log"
+            ]
+        },
+        "Google Chrome": {
+            "name": "Google Chrome Enterprise",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\GoogleChrome",
+            "filename": "Install-GoogleChrome.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "/lv $LogPath\\Install-GoogleChrome.log"
+            ]
+        },
+        "Java": {
+            "name": "Java",
+            "version": "231",
+            "Source": "\\Server\\Path\\Here\\Java",
+            "filename": "Install-Java.ps1",
+            "filepath": "$filePath",
+            "argumentlist": [
+                "/s",
+                "AUTO_UPDATE=0",
+                "REBOOT=Disable",
+                "SPONSORS=0",
+                "REMOVEOUTOFDATEJRES=1"
+            ]
+        },
+        "Kaspersky": {
+            "name": "Kaspersky",
+            "version": "11",
+            "Source": "\\Server\\Path\\Here\\Kaspersky",
+            "filename": "Install-Kaspersky.ps1",
+            "filepath": "$filePath",
+            "argumentlist": [
+                "/s"
+            ]
+        },
+        "Lenovo System Update": {
+            "name": "Lenovo System Update",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\SystemUpdater",
+            "filename": "Install-SystemUpdater.ps1",
+            "filepath": "$filePath",
+            "argumentlist": [
+                "/VerySilent"
+            ]
+        },
+        "Malwarebytes": {
+            "name": "Malwarebytes Anti-Malware",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\MalwarebytesAnti-Malware",
+            "filename": "Install-Malwarebytes.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "/lv $LogPath\\Install-Malwarebytes.log"
+            ]
+        },
+        "Office 16 Click-to-Run": {
+            "name": "Office 365 Pro-Plus",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\Office365Install",
+            "filename": "Install-Office365.bat",
+            "filepath": "",
+            "argumentlist": [
+                "/i"
+            ]
+        },
+        "ManageEngine Patch Manager Plus": {
+            "name": "ManageEngine Patch Manager Plus",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\PatchManagementPlus",
+            "filename": "Install-PMP.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "TRANSFORMS=\"UEMSAgent.mst\"",
+                "ENABLESILENT=yes",
+                "REBOOT=ReallySuppress",
+                "/lv $LogPath\\Install-PMP.log"
+            ]
+        },
+        "Solarwinds": {
+            "name": "Solarwinds",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\ServiceDeskDiscoverClient",
+            "filename": "Install-ServiceDesk.ps1",
+            "filepath": "$filePath",
+            "argumentlist": [
+                "--mode unattended"
+            ]
+        },
+        "Zoom": {
+            "name": "Zoom",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\Zoom",
+            "filename": "Install-Zoom.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/Q",
+                "ZoomAutoUpdate=\"true\"",
+                "ZoomAutoStart=\"true\"",
+                "ZSSOHOST=\"SomeBusiness\"",
+                "ZConfig=\"nogoogle=1;nofacebook=1;DisableLoginWithEmail=1;kCmdParam_InstallOption=8\"",
+                "/lv $LogPath\\Install-Zoom.log"
+            ]
+        },
+        "Zoom Outlook Plugin": {
+            "name": "Zoom Outlook Plugin",
+            "version": "",
+            "Source": "\\Server\\Path\\Here\\Zoom",
+            "filename": "Install-Zoom.ps1",
+            "filepath": "msiexec.exe",
+            "argumentlist": [
+                "/i",
+                "$app",
+                "/QB",
+                "/lv $LogPath\\Install-ZoomOutlookPlugin.log"
+            ]
+        }
+    },
+    "Department": {
+        "Sales": [
+            "Adobe Acrobat Reader DC",
+            "Adobe Flash Player",
+            "Microsoft Dynamics 365",
+            "Dell Command | Update",
+            "Google Chrome",
+            "Java",
+            "Kaspersky",
+            "Lenovo System Update",
+            "Malwarebytes",
+            "Office 16 Click-to-Run",
+            "ManageEngine Patch Manager Plus",
+            "Solarwinds",
+            "Zoom",
+            "Zoom Outlook Plugin"
+        ],
+        "Tech": [
+            "Adobe Acrobat Reader DC",
+            "Adobe Flash Player",
+            "Dell Command | Update",
+            "Google Chrome",
+            "Java",
+            "Kaspersky",
+            "Lenovo System Update",
+            "Malwarebytes",
+            "Office 16 Click-to-Run",
+            "ManageEngine Patch Manager Plus",
+            "Solarwinds",
+            "Zoom",
+            "Zoom Outlook Plugin"
+        ],
+        "Call Center": [
+            "Adobe Acrobat Reader DC",
+            "Adobe Flash Player",
+            "Microsoft Dynamics 365",
+            "Dell Command | Update",
+            "Google Chrome",
+            "Java",
+            "Kaspersky",
+            "Lenovo System Update",
+            "Malwarebytes",
+            "Office 16 Click-to-Run",
+            "ManageEngine Patch Manager Plus",
+            "Solarwinds",
+            "Zoom",
+            "Zoom Outlook Plugin"
+        ],
+        "Default": [
+            "Adobe Acrobat Reader DC",
+            "Adobe Flash Player",
+            "Google Chrome",
+            "Java",
+            "Kaspersky",
+            "Malwarebytes",
+            "Office 16 Click-to-Run",
+            "Zoom",
+            "Zoom Outlook Plugin"
+        ]
+    }
+}
