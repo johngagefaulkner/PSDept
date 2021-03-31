@@ -77,7 +77,7 @@ template.
 ### **Compare-ProgramList**
 ------
 Under General-->Install
-Compare-ProgramList – this will compare the list of programs that are installed to what they should have either for their department where listed or the default "Renaissance" department.
+Compare-ProgramList – this will compare the list of programs that are installed to what they should have either for their department where listed or the default "default" department.
 
 This cmdlet will grab the current department automatically for you and check that. If the department doesn’t exist then the default is chosen instead.
 
