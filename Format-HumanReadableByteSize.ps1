@@ -10,10 +10,10 @@ function Format-HumanReadableByteSize {
         Takes any byte object.
 
     .INPUTS
-        File or folder paths
+        Int
 
     .OUTPUTS
-        Number of fonts, successfully installed fonts and number of, fonts that errored, invalid objects.
+        String
 
     .EXAMPLE
         Format-HumanReadableByteSize -InputObject 10000
