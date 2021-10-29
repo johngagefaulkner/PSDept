@@ -7,8 +7,6 @@ function Install-Font {
         Only copies what is not currently existing in the Windows font folder.
     .PARAMETER Path
         Folder path to a list of fonts or a single font file.
-    .PARAMETER LogPath
-        Path of the logfile you want it to log to. Default is C:\Temp.
     .INPUTS
         File or folder paths
     .OUTPUTS
