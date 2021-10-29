@@ -38,12 +38,6 @@ function Install-Font {
             return $true
         })]
         [System.IO.FileInfo]$Path,
-        
-        [Parameter(Position = 1,
-            ValueFromPipeline,
-            ValueFromPipelineByPropertyName)]
-        [ValidateNotNullOrEmpty()]
-        [String]$LogPath = "C:\Temp",
 
         [parameter(DontShow = $true)]
         $FormatEnumerationLimit = 5
