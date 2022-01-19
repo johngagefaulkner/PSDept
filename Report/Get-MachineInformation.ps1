@@ -1,13 +1,13 @@
-﻿function Get-MachineInformation {
+
+function Get-MachineInformation {
     [CmdletBinding()]
     param (
-        [Parameter(Mandatory = $false,
+        [Parameter(
             Position = 0,
-            ValueFromPipeline = $true,
-            ValueFromPipelineByPropertyName = $true)]
+            ValueFromPipeline,
+            ValueFromPipelineByPropertyName)]
         [ValidateNotNullOrEmpty()] 
         [string[]]$ComputerName = $env:COMPUTERNAME
-        
     )
     function New-AutoCimSession {
         <#
@@ -123,7 +123,7 @@
             }
         }
         catch {
-            Write-Host "$_.Exception.Message" -ForegroundColor Red
+            $PSItem
         }
    
         # Remove Cim sessions
