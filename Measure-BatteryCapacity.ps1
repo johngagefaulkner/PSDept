@@ -6,7 +6,7 @@ function Measure-BatteryCapacity {
         Measure the battery capacity and will let you know if a battery is below a certain percentage for its charging ability .
         It will then output a report if it is or you can force a report. Also it will tell you which battery and its serial number.
     .PARAMETER ComputerName
-        Computer you wish to connect to for sgathering the battery information.
+        Computer you wish to connect to for gathering the battery information.
     .PARAMETER Degradation
         Int value of 30-90 for how low the battery can go before a report is generated
     .PARAMETER ForceReport
