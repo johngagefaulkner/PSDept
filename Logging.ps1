@@ -1,9 +1,62 @@
 Class PsLogger {
-    hidden $loggingScript =
-    {
+    <#
+    .SYNOPSIS
+        Creates a runspace to run your event driven logger.
+    .DESCRIPTION
+        Creates a runspace to run your event driven logger.
+    .PARAMETER Path
+        Path of the logfile you want it to log to.
+    .PARAMETER Write
+        Writes to the console as well as the log file.
+    .PARAMETER Severity
+        "Emergency","Alert","Critical","Error","Warning","Notice","Informational","Debug"
+    .PARAMETER CleanLogs
+        Remove Logs older than $X days from Path.
+    .PARAMETER IsEmpty
+        IsEmpty method to see if anything is still processing
+    .PARAMETER Remove
+        Remove method to close and dispose of the logging thread
+    .PARAMETER GetStatus
+        Get Status Method Tells you the runspace information and its state and availability.
+    .INPUTS
+        Description of objects that can be piped to the script.
+    .OUTPUTS
+        Description of objects that are output by the script.
+    .EXAMPLE
+        $logger = [PSLogger]::new("C:\Temp","Test")
+    .EXAMPLE
+        $logger = [PSLogger]::new("C:\Temp","Test1",$True)
+    .EXAMPLE
+        $logger.Informational("info goes here")
+    .EXAMPLE
+        $logger.CleanLogs("C:\Temp",-1)
+    .EXAMPLE
+        $logger.IsEmpty()
+        True
+    .EXAMPLE
+        $logger.Remove()
+    .EXAMPLE
+        $logger.GetStatus()
+        Id Name            ComputerName    Type          State         Availability   
+        -- ----            ------------    ----          -----         ------------   
+        2 PSLogger        localhost       Local         Opened        Available  
+    .EXAMPLE
+        $logPath = "C:\temp"
+        if (!("PSLogger" -as [type])) {
+            $callingScript = ($MyInvocation.MyCommand.Name) -split('.ps1')
+            ."\\server\path\here\Logging.ps1"
+            $logger = [PSLogger]::new($logPath,$callingScript)
+        }
+    .LINK
+        Links to further documentation.
+    .NOTES
+        Detail on what the script does, if this is needed.
+    #>
+    # Code that will run in the runspace when it is invoked later on
+    hidden $loggingScript = {
         
         function Start-Logging {
-            $loggingTimer = new-object Timers.Timer
+            $loggingTimer = New-Object Timers.Timer
             $action = { logging }
             $loggingTimer.Interval = 1000
             $null = Register-ObjectEvent -InputObject $loggingTimer -EventName elapsed -Sourceidentifier loggingTimer -Action $action
@@ -24,14 +77,50 @@ Class PsLogger {
     
         Start-Logging
     }
+
+    # Variables
     hidden $loggingRunspace = [runspacefactory]::CreateRunspace()
     hidden $logEntries = [System.Collections.Concurrent.ConcurrentQueue[string]]::new()
     hidden $logLocation = "C:\Temp"
-    hidden $ExecutingScript = "test"
+    hidden $ExecutingScript = "Default"
+    hidden $Write = $False
     
+    
+    # Constructor with default values
+    PsLogger() {
+        $this.logLocation = "C:\Temp"
+        $this.ExecutingScript = "Default"
+        $this.Write = $False
+
+        # Check for and build log path
+        if (!(Test-Path -Path $this.logLocation)) {
+            [void](New-Item -path $this.logLocation -ItemType directory -force)
+        }
+
+        # Start Logging runspace
+        $this.StartLogging()
+    }    
+    
+    # Constructor with log path and the name of the log
     PsLogger([string]$logLocation, [string]$ExecutingScript) {
         $this.logLocation = $logLocation
         $this.ExecutingScript = $ExecutingScript
+        $this.Write = $False
+
+        # Check for and build log path
+        if (!(Test-Path -Path $this.logLocation)) {
+            [void](New-Item -path $this.logLocation -ItemType directory -force)
+        }
+
+        # Start Logging runspace
+        $this.StartLogging()
+    }
+
+    # Constructor with log path and the name of the log and switch for writing to console
+    PsLogger([string]$logLocation, [string]$ExecutingScript, [switch]$Write) {
+        $this.logLocation = $logLocation
+        $this.ExecutingScript = $ExecutingScript
+        $this.Write = $Write
 
         # Check for and build log path
         if (!(Test-Path -Path $this.logLocation)) {
@@ -90,10 +179,14 @@ Class PsLogger {
             $addResult = $this.logEntries.TryAdd($msg)
         }
 
-       #write-host "$msg"
+        if ($this.Write) {
+            write-host "$msg"
+        }
+        
 
     }
 
+    # Create
     hidden StartLogging() {
         $this.LoggingRunspace.ThreadOptions = "ReuseThread"
         $this.loggingRunspace.name = 'PSLogger'
@@ -101,19 +194,43 @@ Class PsLogger {
         $this.LoggingRunspace.SessionStateProxy.SetVariable("logEntries", $this.logEntries)
         $this.LoggingRunspace.SessionStateProxy.SetVariable("logLocation", $this.logLocation)
         $this.LoggingRunspace.SessionStateProxy.SetVariable("ExecutingScript", $this.ExecutingScript)
+        $this.LoggingRunspace.SessionStateProxy.SetVariable("Write", $this.Write)
         $cmd = [PowerShell]::Create().AddScript($this.loggingScript)
       
         $cmd.Runspace = $this.LoggingRunspace
         $null = $cmd.BeginInvoke()
     }
 
-
-    # Stop Method
-    Stop() {
-        $This.LoggingRunspace.Stop()
+        # Remove Logs older than $X days from Path
+     CleanLogs([string]$logLocation, [int]$Days) {
+        $Logs = (Get-ChildItem $logLocation -Filter "*.log").Where( { $_.LastWriteTime -LT (Get-Date).AddDays($Days) })
+        foreach ($Log in $Logs) {
+            Try {
+                $Log | Remove-Item -Force
+                $this.Logger.Informational("Cleaned $($log.Name)")
+            }
+            Catch {
+                #$this.Logger.Error("$PSitem")
+            }
+        }
     }
 
-    # Remove Method
+    # Stop Method
+    #Stop() {
+    #    $This.LoggingRunspace.Stop()
+    #}
+ 
+    # IsEmpty method to see if anything is still processing
+    [bool]IsEmpty() {
+    if ($this.logEntries.IsEmpty) {
+            return $true
+        } else {
+            return $false
+        }
+       
+    }
+
+    # Remove method to close and dispose of the logging thread
     Remove() {
         Start-Sleep -Seconds 1
         $This.LoggingRunspace.close()
@@ -123,9 +240,9 @@ Class PsLogger {
             $This.LoggingRunspace.Dispose()
         }
     }
- 
+
     # Get Status Method
     [object]GetStatus() {
-        return $This.LoggingRunspace.InvocationStateInfo
+        return $This.LoggingRunspace
     }
 }
