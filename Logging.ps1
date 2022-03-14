@@ -23,17 +23,23 @@ Class PsLogger {
     .OUTPUTS
         Description of objects that are output by the script.
     .EXAMPLE
+        # Create a new log with the name Test
         $logger = [PSLogger]::new("C:\Temp","Test")
     .EXAMPLE
+        # Create a new log with the name Test1 and write to the console
         $logger = [PSLogger]::new("C:\Temp","Test1",$True)
     .EXAMPLE
+        # write to the log with a informational severity
         $logger.Informational("info goes here")
     .EXAMPLE
+        # Clean logs older than "-1"
         $logger.CleanLogs("C:\Temp",-1)
     .EXAMPLE
+        # Checks if the queue is empty
         $logger.IsEmpty()
         True
     .EXAMPLE
+        # Waits one second for the queue to empty and then closes the thread
         $logger.Remove()
     .EXAMPLE
         $logger.GetStatus()
